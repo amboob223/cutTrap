@@ -47,16 +47,19 @@ function Form() {
         body: JSON.stringify(formData)
       });
 
+      console.log(response);
+
+      // Clear form data after submission
       setFormData({
         name: "",
-    date: "",
-    start: "",
-    end: "",
-    email: "",
-    phone: ""
-      })
+        date: "",
+        start: "",
+        end: "",
+        email: "",
+        phone: ""
+      });
 
-      alert("thank you for submitting")
+      alert("Thank you for submitting!");
       // Handle the response as needed (e.g., show success message)
     } catch (error) {
       console.error("Error submitting the form:", error);
@@ -66,9 +69,9 @@ function Form() {
   return (
     <div className="container">
       <div className="row justify-content-center">
-        <div className="col-md-4">
+        <div className="col-md-6">
           <form onSubmit={formHandler}>
-             <h1>Book a booth</h1>
+            <h1 className="mb-4">Book a booth</h1>
             <div className="form-group">
               <label htmlFor="name">Name:</label>
               <input type="text" className="form-control" id="name" name="name" onChange={(e) => setFormData({ ...formData, name: e.target.value })} required />
@@ -94,7 +97,7 @@ function Form() {
               <label htmlFor="phone">Phone:</label>
               <input type="text" className="form-control" id="phone" name="phone" onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
             </div>
-            
+
             <button type="submit" className="btn btn-primary">Submit</button>
           </form>
         </div>
