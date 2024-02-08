@@ -3,6 +3,7 @@ import "../App.css";
 
 function Form() {
   const [formData, setFormData] = useState({
+    
     name: "",
     date: "",
     start: "",
@@ -10,7 +11,8 @@ function Form() {
     email: "",
     phone: ""
   });
-
+  
+  const [tot,setTot] = useState(0);
   const formHandler = async (e) => {
     e.preventDefault();
 
@@ -47,7 +49,22 @@ function Form() {
         body: JSON.stringify(formData)
       });
 
+
+      
+// to get the price we had to convert to milliseconds then 
+
+      const startTime = new Date(`${formData.date}T${formData.start}`); // t is a delimiter in this date object  the time object look like this ` Thu Feb 08 2024 10:21:00 GMT-0500 (Eastern Standard Time)`
+    const endTime = new Date(`${formData.date}T${formData.end}`);
+    const timeDifference = endTime - startTime;
+    const totalTimeInHours = timeDifference / (1000 * 60 * 60); // Convert milliseconds to hours // multiplied by 0 twice beceause minutes and hour
+    const totalCharge = totalTimeInHours * 5; // $5 per hour
+      setTot(totalCharge);
+      console.log(startTime)
+      console.log(timeDifference)
+      console.log(totalCharge)
       console.log(response);
+
+      //if you want to give global scope to put ijn the jsx part yiou go tto managae the state
 
       // Clear form data after submission
       setFormData({
@@ -99,7 +116,11 @@ function Form() {
             </div>
 
             <button type="submit" className="btn btn-primary">Submit</button>
+
           </form>
+          <div>
+            <h2> ${`${tot}`} is your total</h2>
+          </div>
         </div>
       </div>
     </div>
