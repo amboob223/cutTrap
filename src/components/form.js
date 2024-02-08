@@ -8,7 +8,8 @@ function Form() {
     start: "",
     end: "",
     email: "",
-    phone: ""
+    phone: "",
+    price: 0 // Initial value for the price
   });
 
   const [tot, setTot] = useState(0);
@@ -131,6 +132,17 @@ function Form() {
               <label htmlFor="phone">Phone:</label>
               <input type="text" className="form-control" id="phone" name="phone" onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
             </div>
+            <div className="form-group">
+  <label htmlFor="price">Price:</label>
+  <input
+    type="number"  // Use the appropriate input type for your price (e.g., "text" or "number")
+    className="form-control"
+    id="price"
+    name="price"
+    value={formData.price}
+    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+  />
+</div>
 
             {confirmed ? (
               <>
