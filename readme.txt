@@ -67,3 +67,11 @@ Feedback and Contributions
 We welcome your feedback and contributions to enhance the functionality and user experience of the Barber Shop Booking App. Feel free to open issues, submit pull requests, or reach out to our development team.
 
 Thank you for choosing our application! Happy barbering!
+
+every day we break the four parts of the app up
+    -yesterday we did post
+    -today its delete
+    -we got to integrate pricing 
+    - we got to be able to update
+
+

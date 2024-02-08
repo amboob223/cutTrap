@@ -11,7 +11,40 @@ function Form() {
     phone: ""
   });
 
+  const [tot, setTot] = useState(0);
+  const [confirmed, setConfirmed] = useState(false);
+
   const formHandler = async (e) => {
+    e.preventDefault();
+
+    // Check for time conflicts before submitting the form
+    const conflicts = await checkTimeConflicts(formData.date, formData.start, formData.end);
+
+    if (conflicts) {
+      alert("Selected time is already booked. Please choose a different time.");
+    } else {
+      // If no conflicts, proceed with submitting the form
+      submitForm();
+    }
+  };
+
+  const handleTimeChange = () => {
+    if (formData.start && formData.end) {
+      const startTime = new Date(`${formData.date}T${formData.start}`);
+      const endTime = new Date(`${formData.date}T${formData.end}`);
+      const timeDifference = endTime - startTime;
+      const totalTimeInHours = timeDifference / (1000 * 60 * 60);
+      const totalCharge = totalTimeInHours * 5; // $5 per hour
+      setTot(totalCharge);
+    }
+  };
+
+  const handleConfirm = () => {
+    handleTimeChange(); // Calculate total charge when confirming
+    setConfirmed(true);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Check for time conflicts before submitting the form
@@ -47,8 +80,6 @@ function Form() {
         body: JSON.stringify(formData)
       });
 
-      console.log(response);
-
       // Clear form data after submission
       setFormData({
         name: "",
@@ -58,6 +89,9 @@ function Form() {
         email: "",
         phone: ""
       });
+
+      setTot(0); // Reset total charge
+      setConfirmed(false); // Reset confirmation status
 
       alert("Thank you for submitting!");
       // Handle the response as needed (e.g., show success message)
@@ -98,12 +132,28 @@ function Form() {
               <input type="text" className="form-control" id="phone" name="phone" onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
             </div>
 
-            <button type="submit" className="btn btn-primary">Submit</button>
+            {confirmed ? (
+              <>
+                <button type="button" className="btn btn-primary" onClick={handleSubmit}>
+                  Submit
+                </button>
+              </>
+            ) : (
+              <>
+                <button type="button" className="btn btn-success" onClick={handleConfirm}>
+                  Confirm
+                </button>
+              </>
+            )}
           </form>
+          <div>
+            <h2>${tot} is your total</h2>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
 
 export default Form;

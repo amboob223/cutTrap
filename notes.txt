@@ -49,3 +49,52 @@ const styles = StyleSheet.create({
    color:"black"
   }
 });
+
+
+
+
+
+ <div className="form-group">
+              <label htmlFor="name">Name:</label>
+              <input type="text" className="form-control" id="name" name="name" onChange={(e) => setFormData({ ...formData, name: e.target.value })} required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="date">Date:</label>
+              <input type="date" className="form-control" id="date" name="date" onChange={(e) => setFormData({ ...formData, date: e.target.value })} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="start">Start Time:</label>
+              <input type="time" className="form-control" id="start" name="start" onChange={(e) => setFormData({ ...formData, start: e.target.value })} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="end">End Time:</label>
+              <input type="time" className="form-control" id="end" name="end" onChange={(e) => setFormData({ ...formData, end: e.target.value })} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email:</label>
+              <input type="text" className="form-control" id="email" name="email" onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+              <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div className="form-group">
+              <label htmlFor="phone">Phone:</label>
+              <input type="text" className="form-control" id="phone" name="phone" onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
+            </div>
+
+            a way to aggregate all the bookings per day
+            -a way to do the pricing 
+            - a way to cancel booking
+            \
+
+
+
+            In the ISO 8601 date and time format, the letter "T" is used as a separator between the date and time components. When you construct a string 
+            representation of a date and time in the format YYYY-MM-DDTHH:mm:ss, the "T" serves as a clear delimiter between the date part and the time part.
+
+For example:
+
+2022-02-06T12:30:00 represents February 6, 2022, at 12:30 PM.
+In the line:
+
+
+git config --global user.email "Monk8896@gmail.com"
+git config --global user.name "amboob223"
