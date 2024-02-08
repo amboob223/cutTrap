@@ -3,6 +3,7 @@ import "../App.css";
 
 function Form() {
   const [formData, setFormData] = useState({
+    
     name: "",
     date: "",
     start: "",
@@ -80,6 +81,8 @@ function Form() {
         body: JSON.stringify(formData)
       });
 
+      console.log(response);
+
       // Clear form data after submission
       setFormData({
         name: "",
@@ -132,23 +135,8 @@ function Form() {
               <input type="text" className="form-control" id="phone" name="phone" onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
             </div>
 
-            {confirmed ? (
-              <>
-                <button type="button" className="btn btn-primary" onClick={handleSubmit}>
-                  Submit
-                </button>
-              </>
-            ) : (
-              <>
-                <button type="button" className="btn btn-success" onClick={handleConfirm}>
-                  Confirm
-                </button>
-              </>
-            )}
+            <button type="submit" className="btn btn-primary">Submit</button>
           </form>
-          <div>
-            <h2>${tot} is your total</h2>
-          </div>
         </div>
       </div>
     </div>
