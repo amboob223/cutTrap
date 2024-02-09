@@ -50,3 +50,4 @@ const styles = StyleSheet.create({
   }
 });
 
+//we got to cooment the ;ines and see whats gouing on 

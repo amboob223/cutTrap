@@ -12,14 +12,15 @@ function App() {
           <h1>
             Want to cut sign up 
           </h1>
-            <Link to="/owner">Owner</Link>
-          <Form />
-          
-      
+
+          {/* Use Link for navigation to Owner component */}
+          <Link to="/owner">Owner</Link>
 
           {/* Use Routes to wrap Route components */}
           <Routes>
-            <Route path="/"/>
+            {/* Set a default route for the home page */}
+            <Route path="/" element={<Form />} />
+            {/* Specify the route for the Owner component */}
             <Route path='/owner' element={<Owner />} />
           </Routes>
         </div>
