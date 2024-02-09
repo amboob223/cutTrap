@@ -15,7 +15,7 @@ app.use(cors())
 // POST endpoint for signing up a booth
 app.post("/sign", async (req, res) => {
   try {
-    const { name, date, start, end, email, phone } = req.body;
+    const { name, date, start, end, email, phone,price } = req.body;
 
     // Check for overlapping sessions with a minimum gap of 15 minutes
     const overlappingSessions = await pool.query(
@@ -29,8 +29,8 @@ app.post("/sign", async (req, res) => {
 
     // Insert a new booth record into the database
     await pool.query(
-      "INSERT INTO booth (name, date, start_time, end_time, email, phone) VALUES ($1, $2, $3, $4, $5, $6)",
-      [name, date, start, end, email, phone]
+      "INSERT INTO booth (name, date, start_time, end_time, email, phone,price) VALUES ($1, $2, $3, $4, $5, $6,$7)",
+      [name, date, start, end, email, phone,price]
     );
 
     // Send a success response

@@ -37,6 +37,7 @@ function Form() {
       const totalTimeInHours = timeDifference / (1000 * 60 * 60);
       const totalCharge = totalTimeInHours * 5; // $5 per hour
       setTot(totalCharge);
+      setFormData({...formData, price:totalCharge})
     }
   };
 
@@ -80,31 +81,34 @@ function Form() {
         },
         body: JSON.stringify(formData)
       });
-
-      // Clear form data after submission
-      setFormData({
-        name: "",
-        date: "",
-        start: "",
-        end: "",
-        email: "",
-        phone: ""
-      });
-
-      setTot(0); // Reset total charge
-      setConfirmed(false); // Reset confirmation status
-
-      alert("Thank you for submitting!");
-      // Handle the response as needed (e.g., show success message)
+  
+      // Check if the response is successful (status code 2xx)
+      if (response.ok) {
+        // Clear form data after successful submission
+        setFormData({
+          name: "",
+          date: "",
+          start: "",
+          end: "",
+          email: "",
+          phone: ""
+        });
+  
+        setTot(0); // Reset total charge
+        setConfirmed(false); // Reset confirmation status
+        alert("Thank you for submitting!");
+      }
     } catch (error) {
       console.error("Error submitting the form:", error);
     }
   };
+  
+
 
   return (
-    <div className="container">
+    <div>
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div>
           <form onSubmit={formHandler}>
          
             <div className="form-group">
@@ -132,17 +136,7 @@ function Form() {
               <label htmlFor="phone">Phone:</label>
               <input type="text" className="form-control" id="phone" name="phone" onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
             </div>
-            <div className="form-group">
-  <label htmlFor="price">Price:</label>
-  <input
-    type="number"  // Use the appropriate input type for your price (e.g., "text" or "number")
-    className="form-control"
-    id="price"
-    name="price"
-    value={formData.price}
-    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-  />
-</div>
+            
 
             {confirmed ? (
               <>
