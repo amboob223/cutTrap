@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Owner from "./owner";
 import "../App.css";
 
 function Form() {
@@ -9,7 +11,7 @@ function Form() {
     end: "",
     email: "",
     phone: "",
-    price: 0 // Initial value for the price
+    price: 0,
   });
 
   const [tot, setTot] = useState(0);
@@ -17,14 +19,17 @@ function Form() {
 
   const formHandler = async (e) => {
     e.preventDefault();
-
-    // Check for time conflicts before submitting the form
-    const conflicts = await checkTimeConflicts(formData.date, formData.start, formData.end);
+    const conflicts = await checkTimeConflicts(
+      formData.date,
+      formData.start,
+      formData.end
+    );
 
     if (conflicts) {
-      alert("Selected time is already booked. Please choose a different time.");
+      alert(
+        "Selected time is already booked. Please choose a different time."
+      );
     } else {
-      // If no conflicts, proceed with submitting the form
       submitForm();
     }
   };
@@ -35,131 +40,99 @@ function Form() {
       const endTime = new Date(`${formData.date}T${formData.end}`);
       const timeDifference = endTime - startTime;
       const totalTimeInHours = timeDifference / (1000 * 60 * 60);
-      const totalCharge = totalTimeInHours * 5; // $5 per hour
+      const totalCharge = totalTimeInHours * 5;
       setTot(totalCharge);
-      setFormData({...formData, price:totalCharge})
+      setFormData({ ...formData, price: totalCharge });
     }
   };
 
   const handleConfirm = () => {
-    handleTimeChange(); // Calculate total charge when confirming
+    handleTimeChange();
     setConfirmed(true);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Check for time conflicts before submitting the form
-    const conflicts = await checkTimeConflicts(formData.date, formData.start, formData.end);
+    const conflicts = await checkTimeConflicts(
+      formData.date,
+      formData.start,
+      formData.end
+    );
 
     if (conflicts) {
-      alert("Selected time is already booked. Please choose a different time.");
+      alert(
+        "Selected time is already booked. Please choose a different time."
+      );
     } else {
-      // If no conflicts, proceed with submitting the form
       submitForm();
     }
   };
 
   const checkTimeConflicts = async (date, start, end) => {
     try {
-      const response = await fetch(`http://localhost:5000/sign?date=${date}&start=${start}&end=${end}`);
+      const response = await fetch(
+        `http://localhost:5000/sign?date=${date}&start=${start}&end=${end}`
+      );
       const data = await response.json();
-      return data.conflicts; // Assuming the server responds with a property 'conflicts'
+      return data.conflicts;
     } catch (error) {
       console.error("Error checking time conflicts:", error);
-      return true; // Assume conflict in case of an error
+      return true;
     }
   };
 
   const submitForm = async () => {
     try {
-      // Proceed with submitting the form (making a POST request to sign endpoint)
       const response = await fetch("http://localhost:5000/sign", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
-  
-      // Check if the response is successful (status code 2xx)
+
       if (response.ok) {
-        // Clear form data after successful submission
         setFormData({
           name: "",
           date: "",
           start: "",
           end: "",
           email: "",
-          phone: ""
+          phone: "",
         });
-  
-        setTot(0); // Reset total charge
-        setConfirmed(false); // Reset confirmation status
+
+        setTot(0);
+        setConfirmed(false);
         alert("Thank you for submitting!");
       }
     } catch (error) {
       console.error("Error submitting the form:", error);
     }
   };
-  
-
 
   return (
     <div>
       <div className="row justify-content-center">
         <div>
           <form onSubmit={formHandler}>
-         
-            <div className="form-group">
-              <label htmlFor="name">Name:</label>
-              <input type="text" className="form-control" id="name" name="name" onChange={(e) => setFormData({ ...formData, name: e.target.value })} required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="date">Date:</label>
-              <input type="date" className="form-control" id="date" name="date" onChange={(e) => setFormData({ ...formData, date: e.target.value })} />
-            </div>
-            <div className="form-group">
-              <label htmlFor="start">Start Time:</label>
-              <input type="time" className="form-control" id="start" name="start" onChange={(e) => setFormData({ ...formData, start: e.target.value })} />
-            </div>
-            <div className="form-group">
-              <label htmlFor="end">End Time:</label>
-              <input type="time" className="form-control" id="end" name="end" onChange={(e) => setFormData({ ...formData, end: e.target.value })} />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email:</label>
-              <input type="text" className="form-control" id="email" name="email" onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
-              <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div className="form-group">
-              <label htmlFor="phone">Phone:</label>
-              <input type="text" className="form-control" id="phone" name="phone" onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
-            </div>
-            
-
-            {confirmed ? (
-              <>
-                <button type="button" className="btn btn-primary" onClick={handleSubmit}>
-                  Submit
-                </button>
-              </>
-            ) : (
-              <>
-                <button type="button" className="btn btn-success" onClick={handleConfirm}>
-                  Confirm
-                </button>
-              </>
-            )}
+            {/* ... (rest of your form) ... */}
           </form>
           <div>
             <h2>${tot} is your total</h2>
           </div>
         </div>
       </div>
+
+      {/* Link to navigate to the /owner route */}
+      <Link to="/owner">Go to Owner Page</Link>
+
+      <Router>
+        <Routes>
+          <Route path="/owner" element={<Owner />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
-
 
 export default Form;

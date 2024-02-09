@@ -19,10 +19,21 @@ finnacial stratergy for econsensus
 what features 
 
 	able to cancel a booking 
-	*to be able to get all the bookings on a particular day 
-	 
-	* we need to add a column for the price from each customer
+	*to be able to get all the bookings on a particular day
+        -we need a serperate component for the owner side where they can 
+            -see total bookings for that day
+                    -this will likley involve a get request to teh sign api 
+                    -from this api we do a query to get all the data from the booth 
+                    we then use sql to query through to a particular datae and we take the total for that day by ading all teh prices for teh day 
+                     
+            -erase a particulr booking
+            
+    * once a transaction is schedule we need to give them a code 
+	* we dont need to delete just set up where they pay for there code 
 
+    * she wants an app that allows the peple to book a booth 
+        - the paaymeny is reviebed befor they go to the booth
+        -to inigtialize the service a code is generated they confime the code wigth the owner and start cuttying 
 
 
 
