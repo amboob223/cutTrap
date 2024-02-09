@@ -61,6 +61,20 @@ app.get("/sign", async (req, res) => {
   }
 });
 
+app.get("/owner", async (req, res) => {
+  try {
+    const { date } = req.query;
+
+    // Fetch all booths booked on the specified date
+    const result = await pool.query("SELECT * FROM booth WHERE date = $1", [date]);
+
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Error fetching booth data:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 app.listen("5000", () => {
   console.log(`Server is running on port ${"5000"}`);
 });

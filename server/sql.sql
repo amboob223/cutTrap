@@ -10,4 +10,5 @@ CREATE TABLE booth (
     end_time TIME,
     email VARCHAR(255),
     phone VARCHAR(255)
+    price INTEGER
 );
