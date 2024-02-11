@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
+import { Link } from "react-router-dom";
+
 
 function Owner() {
   const [total, setTotal] = useState(0);
@@ -53,6 +55,7 @@ function Owner() {
 
   return (
     <div>
+       <Link to="/">Home</Link>
       <h2>Total Revenue for the Day: ${total}</h2>
       <label>Select Date: </label>
       <input

@@ -23,7 +23,7 @@ function App() {
         <div>
          
          {/* style={{display:"flex", margin:"5%", justifyContent:"space-evenly"}} */}
-           <Link to="/owner">Owner</Link>
+       
 
           
   

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 
 function Form() {
@@ -109,6 +110,7 @@ function Form() {
     <div>
       <div className="row justify-content-center">
         <div>
+          <Link to="/owner">owner</Link>
           <h1>
             Want to cut sign up 
           </h1>
