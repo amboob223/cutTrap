@@ -65,7 +65,8 @@ function Owner() {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Duration</th>
+            <th>Start Time</th>
+            <th>End Time</th>
             <th>Phone</th>
             <th>Email</th>
             <th>Action</th>
@@ -75,7 +76,8 @@ function Owner() {
           {data.map((entry) => (
             <tr key={entry.id}>
               <td>{entry.name}</td>
-              <td>{entry.duration}</td>
+              <td>{entry.start_time}</td>
+              <td>{entry.end_time}</td>
               <td>{entry.phone}</td>
               <td>{entry.email}</td>
               <td>

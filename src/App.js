@@ -20,10 +20,12 @@ function App() {
          
 
       <div>
-        <div style={{display:"flex", margin:"5%", justifyContent:"space-evenly"}}>
-            <Form/>
+        <div>
+         
+         {/* style={{display:"flex", margin:"5%", justifyContent:"space-evenly"}} */}
+           <Link to="/owner">Owner</Link>
 
-     <Owner/>
+          
   
         </div>
       </div>
@@ -33,7 +35,7 @@ function App() {
           {/* Use Routes to wrap Route components */}
           <Routes>
             {/* Set a default route for the home page */}
-            <Route path="/" />
+            <Route path="/" element={<Form/>} />
             {/* Specify the route for the Owner component */}
             <Route path='/owner' element={<Owner />} />
           </Routes>
