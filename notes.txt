@@ -6,8 +6,11 @@ The app so far
   
 whats left 
  2 -we need to style 
+        -add a color scheme and 
  1 -we need to add payment
  3 -add auth
+        -we to be able to tell who the owner is so they can see the otehr side  
+4- change the number part so the total is right 
 
  *outside the app
   -hook up to render and domain name 
