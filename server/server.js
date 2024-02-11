@@ -75,6 +75,21 @@ app.get("/owner", async (req, res) => {
   }
 });
 
+
+// DELETE endpoint for owner to delete a booking by ID
+app.delete("/owner/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Delete the booth entry with the specified ID
+    await pool.query("DELETE FROM booth WHERE id = $1", [id]);
+
+    res.json({ message: "Booking deleted successfully!" });
+  } catch (error) {
+    console.error("Error deleting booth data:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 app.listen("5000", () => {
   console.log(`Server is running on port ${"5000"}`);
 });

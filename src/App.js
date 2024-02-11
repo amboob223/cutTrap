@@ -9,9 +9,7 @@ function App() {
     <Router>
       <div className="App">
         <div className="container">
-          <h1>
-            Want to cut sign up 
-          </h1>
+          
 
           {/* Use Link for navigation to Owner component */}
           <Link to="/owner">Owner</Link>

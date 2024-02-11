@@ -109,6 +109,9 @@ function Form() {
     <div>
       <div className="row justify-content-center">
         <div>
+          <h1>
+            Want to cut sign up 
+          </h1>
           <form onSubmit={formHandler}>
          
             <div className="form-group">
