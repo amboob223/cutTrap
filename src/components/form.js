@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { loadStripe } from '@stripe/stripe-js';
 import "../App.css";
+
+
+const stripePromise = loadStripe("your_publishable_key"); // Replace with your actual publishable key
+
 
 function Form() {
   const [formData, setFormData] = useState({
@@ -104,6 +109,36 @@ function Form() {
     }
   };
   
+   const handlePayment = async () => {
+    try {
+      const stripe = await stripePromise;
+
+      const response = await fetch('http://localhost:5000/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({
+          items: [
+            { id: 1, quantity: 1 }, // Replace with the correct item IDs and quantities
+          ],
+        }),
+      });
+
+      if (response.ok) {
+        const session = await response.json();
+        const result = await stripe.redirectToCheckout({
+          sessionId: session.id,
+        });
+
+        if (result.error) {
+          console.error(result.error.message);
+        }
+      } else {
+        console.error('Failed to create checkout session');
+      }
+    } catch (error) {
+      console.error('Error handling checkout:', error);
+    }
+  };
 
 
   return (
@@ -145,8 +180,8 @@ function Form() {
 
             {confirmed ? (
               <>
-                <button type="button" className="btn btn-primary" onClick={handleSubmit}>
-                  Submit
+                               <button type="button" className="btn btn-success" onClick={handlePayment}>
+                  Pay Now
                 </button>
               </>
             ) : (
@@ -154,6 +189,7 @@ function Form() {
                 <button type="button" className="btn btn-success" onClick={handleConfirm}>
                   Confirm
                 </button>
+
               </>
             )}
           </form>

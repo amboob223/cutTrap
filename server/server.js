@@ -3,14 +3,24 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const pool = require("./db");
 const app = express();
-const cors = require("cors")
-
+const cors = require("cors");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const dotenv = require("dotenv").config();
+const path = require("path");
 
 // PostgreSQL connection pool (replace 'your_database_uri' with your actual PostgreSQL URI)
 
 // Middleware to parse JSON in the request body
 app.use(bodyParser.json());
 app.use(cors())
+
+
+
+const storeItems = new Map([
+    [ 1, {priceInCents:5000, name:"Booth space"}],
+    
+])
+
 
 // POST endpoint for signing up a booth
 app.post("/sign", async (req, res) => {
@@ -90,6 +100,47 @@ app.delete("/owner/:id", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
+
+
+
+app.post("/create-checkout-session", async (req, res) => {
+  try {
+    const { items } = req.body;
+
+    const lineItems = items.map(item => {
+      // You may want to fetch the product details from a database
+      // For simplicity, I'll assume you have a hardcoded storeItems map
+      const storeItem = storeItems.get(item.id);
+
+      return {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: storeItem.name,
+          },
+          unit_amount: storeItem.priceInCents,
+        },
+        quantity: item.quantity,
+      };
+    });
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: lineItems,
+      mode: "payment",
+      success_url: "http://localhost:3000/success.html", // Replace with your success URL
+      cancel_url: "http://localhost:3000/cancel.html", // Replace with your cancel URL
+    });
+
+    res.json({ id: session.id });
+  } catch (error) {
+    console.error("Error creating checkout session:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
 app.listen("5000", () => {
   console.log(`Server is running on port ${"5000"}`);
 });
