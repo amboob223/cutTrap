@@ -2,9 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import "./App.css";
 import Form from "./components/form";
-import Owner from "./components/owner";
+import Owner from "./components/Owner";
 
 function App() {
+
+  
+
+  
+
   return (
     <Router>
       <div className="App">
@@ -12,12 +17,23 @@ function App() {
           
 
           {/* Use Link for navigation to Owner component */}
-          <Link to="/owner">Owner</Link>
+         
 
+      <div>
+        <div style={{display:"flex", margin:"5%", justifyContent:"space-evenly"}}>
+            <Form/>
+
+     <Owner/>
+  
+        </div>
+      </div>
+     
+       
+         
           {/* Use Routes to wrap Route components */}
           <Routes>
             {/* Set a default route for the home page */}
-            <Route path="/" element={<Form />} />
+            <Route path="/" />
             {/* Specify the route for the Owner component */}
             <Route path='/owner' element={<Owner />} />
           </Routes>
