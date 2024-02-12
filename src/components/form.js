@@ -4,7 +4,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import "../App.css";
 
 
-const stripePromise = loadStripe("your_publishable_key"); // Replace with your actual publishable key
+const stripePromise = loadStripe("pk_test_51Oia2ME02fj2AjRf2JEN09ww7eJklTtuJFaZLQUXBRcLgCC8TRwy36OQg54s4BwYpxeYSAvLJv4daoX3vMIuzcrN00d4dfDJHm"); // Replace with your actual publishable key
 
 
 function Form() {
@@ -50,6 +50,7 @@ function Form() {
   const handleConfirm = () => {
     handleTimeChange(); // Calculate total charge when confirming
     setConfirmed(true);
+    
   };
 
   const handleSubmit = async (e) => {
@@ -58,12 +59,15 @@ function Form() {
     // Check for time conflicts before submitting the form
     const conflicts = await checkTimeConflicts(formData.date, formData.start, formData.end);
 
-    if (conflicts) {
-      alert("Selected time is already booked. Please choose a different time.");
+   if (conflicts) {
+      alert(
+        "Selected time is already booked. Please choose a different time."
+      );
     } else {
       // If no conflicts, proceed with submitting the form
       submitForm();
     }
+  
   };
 
   const checkTimeConflicts = async (date, start, end) => {
@@ -87,6 +91,7 @@ function Form() {
         },
         body: JSON.stringify(formData)
       });
+      handlePayment()
   
       // Check if the response is successful (status code 2xx)
       if (response.ok) {
@@ -109,37 +114,41 @@ function Form() {
     }
   };
   
-   const handlePayment = async () => {
-    try {
-      const stripe = await stripePromise;
+const handlePayment = async () => {
+  
+  try {
+  
+    const stripe = await stripePromise;
 
-      const response = await fetch('http://localhost:5000/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({
-          items: [
-            { id: 1, quantity: 1 }, // Replace with the correct item IDs and quantities
-          ],
-        }),
+    const response = await fetch('http://localhost:5000/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': `Bearer sk_test_51Oia2ME02fj2AjRfCm6lH09HloiDztl2Qm0Qf4VjvAORMYCR38bs4qvXZbWs8fjYXfdVMur8D1Jf8ZMupnZ4A2wU00hzkAXUBT`,
+      },
+      body: JSON.stringify({
+        items: [
+          { id: 1, quantity: 1, priceInCents: tot * 100 }, // Use tot as the price in cents
+        ],
+      }),
+    });
+
+    if (response.ok) {
+      const session = await response.json();
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
       });
 
-      if (response.ok) {
-        const session = await response.json();
-        const result = await stripe.redirectToCheckout({
-          sessionId: session.id,
-        });
-
-        if (result.error) {
-          console.error(result.error.message);
-        }
-      } else {
-        console.error('Failed to create checkout session');
+      if (result.error) {
+        console.error(result.error.message);
       }
-    } catch (error) {
-      console.error('Error handling checkout:', error);
+    } else {
+      console.error('Failed to create checkout session');
     }
-  };
-
+  } catch (error) {
+    console.error('Error handling checkout:', error);
+  }
+};
 
   return (
     <div>
@@ -180,7 +189,7 @@ function Form() {
 
             {confirmed ? (
               <>
-                               <button type="button" className="btn btn-success" onClick={handlePayment}>
+                               <button type="button" className="btn btn-success" onClick={handleSubmit}>
                   Pay Now
                 </button>
               </>

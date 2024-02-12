@@ -9,6 +9,6 @@ CREATE TABLE booth (
     start_time TIME,
     end_time TIME,
     email VARCHAR(255),
-    phone VARCHAR(255)
-    price INTEGER
+    phone VARCHAR(255),
+    price INT
 );

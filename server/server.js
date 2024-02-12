@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const pool = require("./db");
 const app = express();
 const cors = require("cors");
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")("sk_test_51Oia2ME02fj2AjRfCm6lH09HloiDztl2Qm0Qf4VjvAORMYCR38bs4qvXZbWs8fjYXfdVMur8D1Jf8ZMupnZ4A2wU00hzkAXUBT");
 const dotenv = require("dotenv").config();
 const path = require("path");
 
@@ -19,9 +19,7 @@ app.use(cors())
 const storeItems = new Map([
     [ 1, {priceInCents:5000, name:"Booth space"}],
     
-])
-
-
+]) 
 // POST endpoint for signing up a booth
 app.post("/sign", async (req, res) => {
   try {
@@ -109,8 +107,6 @@ app.post("/create-checkout-session", async (req, res) => {
     const { items } = req.body;
 
     const lineItems = items.map(item => {
-      // You may want to fetch the product details from a database
-      // For simplicity, I'll assume you have a hardcoded storeItems map
       const storeItem = storeItems.get(item.id);
 
       return {
@@ -119,7 +115,7 @@ app.post("/create-checkout-session", async (req, res) => {
           product_data: {
             name: storeItem.name,
           },
-          unit_amount: storeItem.priceInCents,
+          unit_amount: item.priceInCents,
         },
         quantity: item.quantity,
       };
@@ -129,8 +125,8 @@ app.post("/create-checkout-session", async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: "http://localhost:3000/success.html", // Replace with your success URL
-      cancel_url: "http://localhost:3000/cancel.html", // Replace with your cancel URL
+      success_url: "http://localhost:3000/success.html",
+      cancel_url: "http://localhost:3000/cancel.html",
     });
 
     res.json({ id: session.id });
