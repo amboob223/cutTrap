@@ -4,9 +4,9 @@ import "../App.css";
 
 function Auth() {
   const handleSignup = async (e) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
     e.preventDefault();
-    setIsAuthenticated(true);
+   
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
