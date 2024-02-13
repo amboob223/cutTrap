@@ -152,10 +152,20 @@ const handlePayment = async () => {
 
   return (
     <div>
-      <div className="row justify-content-center">
-        <div>
-          <Link to="/owner">owner</Link>
-          <h1>
+      <div className="row justify-content-center" >
+        <div style={{display:"flex", justifyItems:"space-between",marginTop:"2%"}}>
+
+
+          
+          <div style={{marginLeft:"2%" }}>
+            <h1> owners sign in </h1>
+            <Link to="/owner">owner</Link>
+          </div>
+          
+
+
+          <div>
+             <h1>
             Want to cut sign up 
           </h1>
           <form onSubmit={formHandler}>
@@ -203,6 +213,8 @@ const handlePayment = async () => {
             )}
           </form>
           <div>
+          </div>
+         
             <h2>${tot} is your total</h2>
           </div>
         </div>

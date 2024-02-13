@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import "./App.css";
 import Form from "./components/form";
 import Owner from "./components/Owner";
-
+import Auth from "./components/auth"
 function App() {
 
   
@@ -18,7 +18,7 @@ function App() {
 
           {/* Use Link for navigation to Owner component */}
          
-
+          <Auth/>
       <div>
         <div>
          

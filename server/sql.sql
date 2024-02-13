@@ -12,3 +12,9 @@ CREATE TABLE booth (
     phone VARCHAR(255),
     price INT
 );
+
+CREATE TABLE pass(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255),
+    password VARCHAR(255)
+);
