@@ -128,7 +128,7 @@ const handlePayment = async () => {
       },
       body: JSON.stringify({
         items: [
-          { id: 1, quantity: 1, priceInCents: tot * 100 }, // Use tot as the price in cents
+          { id: 1, quantity: 1, priceInCents:Math.round(tot * 100) }, // Use tot as the price in cents
         ],
       }),
     });
