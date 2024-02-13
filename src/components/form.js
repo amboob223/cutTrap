@@ -155,13 +155,24 @@ const handlePayment = async () => {
       <div className="row justify-content-center" >
         <div style={{display:"flex", justifyItems:"space-between",marginTop:"2%"}}>
 
-
+<div style={{width:"50%", justifyItems:"space-between"}}>
+  <h1>
+    What is the CutTrap
+  </h1>
+  <p>
+  Welcome to CutTrap – your go-to for booth bookings and managing hair-cutting schedules.
+   Shop owners can sign up to track daily bookings and easily manage their appointments.
+    Enjoy the convenience of paying with Stripe or Bitcoin. 
+     Join CutTrap now!
+  </p>
+  
+</div>
          
 
 
           <div>
              <h1>
-            Want to cut sign up 
+            Book your booth space
           </h1>
           <form onSubmit={formHandler}>
          
