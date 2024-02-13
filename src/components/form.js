@@ -156,12 +156,7 @@ const handlePayment = async () => {
         <div style={{display:"flex", justifyItems:"space-between",marginTop:"2%"}}>
 
 
-          
-          <div style={{marginLeft:"2%" }}>
-            <h1> owners sign in </h1>
-            <Link to="/owner">owner</Link>
-          </div>
-          
+         
 
 
           <div>

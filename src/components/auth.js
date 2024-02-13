@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 
+
 function Auth() {
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -32,7 +33,7 @@ function Auth() {
 
     if (response.status === 200) {
       console.log("Login successful:", result.message);
-        
+        window.location.href = "/owner" 
       document.getElementById("messag").innerText = "Login successful";
       // Redirect or perform any other action after successful login
     } else {
@@ -43,7 +44,11 @@ function Auth() {
 
   return (
     <div>
-      <form className="signup" id="signup-form" onSubmit={handleSignup}>
+       <div style={{display:"flex", justifyContent:"center"}}>
+
+      <div>
+        <p>Sign up</p>
+         <form className="signup" id="signup-form" onSubmit={handleSignup}>
        <label htmlFor="email">Email</label>
         <input type="email" id="email" name="email" required />
         <br />
@@ -55,7 +60,9 @@ function Auth() {
       </form>
       <p id="message"></p>
 
-      <p>Already have an account?</p>
+      </div>
+     <div>
+       <p>Already have an account?</p>
       <form className="login" id="login-form" onSubmit={handleLogin}>
         <label htmlFor="loginEmail">Email</label>
         <input type="email" id="loginEmail" name="loginEmail" required />
@@ -67,6 +74,10 @@ function Auth() {
       </form>
         <p id="messag"></p>
     </div>
+     </div>
+    </div>
+   
+     
   );
 }
 
