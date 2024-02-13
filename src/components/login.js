@@ -32,7 +32,7 @@ function Login() {
 
   return (
     <div>
-       <div style={{display:"flex", justifyContent:"space-between", margin:"5%"}}>
+       <div style={{display:"flex", justifyContent:"space-between", marginTop:"4%", marginBottom:"2%"}}>
 
      <div>
       
