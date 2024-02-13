@@ -20,7 +20,7 @@ function Owner() {
 
         // Calculate total revenue for the day
         const dayTotal = fetchedData.reduce(
-          (accumulator, item) => accumulator + item.price,
+          (accumulator, item) => accumulator + parseFloat(item.price),
           0
         );
         setTotal(dayTotal);

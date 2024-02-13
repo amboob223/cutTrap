@@ -10,7 +10,7 @@ function Navbar(){
                 <ul>
                     <li>
                         <Link to="/sign">signUp</Link>
-                        <Link to="/login">login</Link>
+                     
                     </li>
                 </ul>
             </nav>
