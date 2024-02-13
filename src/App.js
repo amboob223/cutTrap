@@ -4,10 +4,13 @@ import "./App.css";
 import Form from "./components/form";
 import Owner from "./components/Owner";
 import Auth from "./components/auth";
+import Navbar from './components/Navbar';
+import Login from './components/login';
+
 
 function Home(){
   return(<div>
-    <Auth/>
+    <Login/>
     <Form/>
   </div>)
 }
@@ -25,12 +28,13 @@ function App() {
       <div className="App">
         <div className="container">
          
-
+        
           <Routes>
             {/* Set a default route for the home page */}
             <Route path="/" element={<Home/>} />
            
-
+            <Route path="/sign" element={<Auth/>}/>
+            <Route path="/login" element={<Login/>}/>
             {/* Specify the route for the Owner component */}
             <Route path='/owner' element={<Owner />} />
           </Routes>

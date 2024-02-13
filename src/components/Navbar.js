@@ -1,2 +1,21 @@
-import {React,useState} from "react";
+import {React} from "react";
 import "../App.css";
+import { Link } from "react-router-dom";
+
+function Navbar(){
+    
+    
+    return(<div>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="/sign">signUp</Link>
+                        <Link to="/login">login</Link>
+                    </li>
+                </ul>
+            </nav>
+
+    </div>)
+}
+
+export default Navbar;
