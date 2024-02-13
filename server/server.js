@@ -42,32 +42,34 @@ const storeItems = new Map([
     }
   })
 
-  app.post("/login",async(req,res)=>{
-    try {
-      const {email,password} = req.body
-      const query = "SELECT \"password\" FROM pass WHERE email = $1"
-      const values = [email]
+app.post("/login", async (req, res) => {
+  try {
+    const { loginEmail, loginPassword } = req.body;
+    console.log("Received login request for email:", loginEmail);
 
-      const result = await pool.query(query,values);
+    const query = "SELECT password FROM pass WHERE email = $1";
+    const values = [loginEmail];
 
-      if(result.rows.length === 1){
-        const hashedPassword = result.rows[0].password;
-        const passwordMatch = await bcrypt.compare(password,hashedPassword)
+    const result = await pool.query(query, values);
+    
 
-        if(passwordMatch){
-          res.status(200).json({message:"login sucessful"})
-        }else{
-          res.status(401).json({error:"invalid"})
-        }
+    if (result.rows.length === 1) {
+      const hashedPassword = result.rows[0].password;
+      const passwordMatch = await bcrypt.compare(loginPassword, hashedPassword);
+
+      if (passwordMatch) {
+        res.status(200).json({ message: "login successful" });
+      } else {
+        res.status(401).json({ error: "invalid password" });
       }
-
-
-
-    } catch (error) {
-      console.log(error)
-      res.status(500).json({error:"internal service error"})
+    } else {
+      res.status(404).json({ error: "user not found" });
     }
-  })
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "internal service error" });
+  }
+});
 
 
 

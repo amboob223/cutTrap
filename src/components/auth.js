@@ -19,26 +19,32 @@ function Auth() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
+    const loginEmail = document.getElementById("loginEmail").value;
+    const loginPassword = document.getElementById("loginPassword").value;
 
     const response = await fetch("http://localhost:5000/login", {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ loginEmail, loginPassword }),
     });
 
+    const result = await response.json();
+
     if (response.status === 200) {
-      window.location.href = "index.html";
+      console.log("Login successful:", result.message);
+        
+      document.getElementById("messag").innerText = "Login successful";
+      // Redirect or perform any other action after successful login
     } else {
-      document.getElementById("message").innerText = "Login failed, try again";
+      console.log("Login failed:", result.error);
+      document.getElementById("messag").innerText = "Login failed, try again";
     }
   };
 
   return (
     <div>
       <form className="signup" id="signup-form" onSubmit={handleSignup}>
-        <label htmlFor="email">Email</label>
+       <label htmlFor="email">Email</label>
         <input type="email" id="email" name="email" required />
         <br />
 
@@ -50,15 +56,16 @@ function Auth() {
       <p id="message"></p>
 
       <p>Already have an account?</p>
-      <form className="signup" id="login-form" onSubmit={handleLogin}>
+      <form className="login" id="login-form" onSubmit={handleLogin}>
         <label htmlFor="loginEmail">Email</label>
-        <input type="email" id="loginEmail" name="email" required />
+        <input type="email" id="loginEmail" name="loginEmail" required />
         <br />
         <label htmlFor="loginPassword">Password</label>
-        <input type="password" id="loginPassword" name="password" required />
+        <input type="password" id="loginPassword" name="loginPassword" required />
         <br />
         <button type="submit">Login</button>
       </form>
+        <p id="messag"></p>
     </div>
   );
 }
