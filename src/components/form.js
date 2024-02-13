@@ -162,7 +162,7 @@ const handlePayment = async () => {
   <p>
   Welcome to CutTrap – your go-to for booth bookings and managing hair-cutting schedules.
    Shop owners can sign up to track daily bookings and easily manage their appointments.
-    Enjoy the convenience of paying with Stripe or Bitcoin. 
+    Enjoy the convenience of paying with Stripe. 
      Join CutTrap now!
   </p>
   
