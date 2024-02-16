@@ -1,13 +1,4 @@
-The app so far
-  -it will allow the user to book a room at rate of 5 dollars 
-  -it confirms before it goees to the database 
-  -the owner can delete the client from the database with the click of a button 
-  - the owner sees the total revenue of all the users on a particular date 
-  
-whats left 
-    
-        -the cancel and sucess pages need to be fixed as well
-              -make same structure with a message and buttons back to home 
+
 
    
  *outside the app
