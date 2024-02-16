@@ -1,11 +1,6 @@
 
+-the next app
+  I want to make a farcaseter farme
+  -then a nft minting snap app using react native bcrypt and ethers 
 
-   
- *outside the app
-  -hook up to render and domain name 
-  - pg admin 
-
-shmita year 
-       -the jews believe in having a year of repayin your debts 
-       -came from farmers who planetd the land for 6 years and on the 7th year the land could rest 
 

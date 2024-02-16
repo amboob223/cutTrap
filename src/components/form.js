@@ -160,7 +160,7 @@ const handlePayment = async () => {
 <table>
   <tr>
     <td>
-      <div style={{width:"50%", justifyItems:"space-between"}}>
+      <div style={{  marginTop:"-175px", width:"50%", justifyItems:"space-between"}}>
   <h1>
     What is the CutTrap
   </h1>
