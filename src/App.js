@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import "./App.css";
 import Form from "./components/form";
-import Owner from "./components/Owner";
+import Owner from "./components/owner";
 import Auth from "./components/auth";
 import Navbar from './components/Navbar';
 import Login from './components/login';
