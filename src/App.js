@@ -6,7 +6,8 @@ import Owner from "./components/Owner";
 import Auth from "./components/auth";
 import Navbar from './components/Navbar';
 import Login from './components/login';
-
+import Cancel from "./components/cancel"
+import Success from "./components/success";
 
 function Home(){
   return(<div>
@@ -27,18 +28,21 @@ function App() {
     <Router>
       <div className="App">
         <div className="container">
-         
-        
-          <Routes>
+         <div className='App-header'>
+
+            <Routes>
             {/* Set a default route for the home page */}
             <Route path="/" element={<Home/>} />
-           
+           <Route path="/success" element={<Success/>}/>
+           <Route path="cancel" element ={<Cancel/>}/>
             <Route path="/sign" element={<Auth/>}/>
             <Route path="/login" element={<Login/>}/>
             {/* Specify the route for the Owner component */}
             <Route path='/owner' element={<Owner />} />
           </Routes>
           
+         </div>
+        
         
 
         </div>

@@ -5,12 +5,11 @@ The app so far
   - the owner sees the total revenue of all the users on a particular date 
   
 whats left 
- 2 -we need to style 
-        -add a color scheme and 
+    
         -the cancel and sucess pages need to be fixed as well
-        -add coinbase patr 
-        -change the number part so the total is right  in the owner 
+              -make same structure with a message and buttons back to home 
 
+   
  *outside the app
   -hook up to render and domain name 
   - pg admin 
@@ -18,3 +17,4 @@ whats left
 shmita year 
        -the jews believe in having a year of repayin your debts 
        -came from farmers who planetd the land for 6 years and on the 7th year the land could rest 
+

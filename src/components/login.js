@@ -32,9 +32,9 @@ function Login() {
 
   return (
     <div>
-       <div style={{display:"flex", justifyContent:"space-between", marginTop:"3%", marginBottom:"2%", backgroundColor:"lightgrey"}}>
+       <div style={{textAlign:"center",display:"flex",fontSize:"20px", justifyContent:"space-between", marginTop:"3%", marginBottom:"1%", backgroundColor:"lightgrey"}}>
 
-     <div>
+     <div style={{textAlign:"center", justifyContent:"center"}}>
       
       <form className="login" id="login-form" onSubmit={handleLogin} style={{display:"flex"}}>
         <label htmlFor="loginEmail">Email</label>
@@ -43,14 +43,14 @@ function Login() {
         <label htmlFor="loginPassword">Password</label>
         <input type="password" id="loginPassword" name="loginPassword" required />
         <br />
-        <button type="submit">Login</button>
+        <button className="btn btn-warning" type="submit">Login</button>
       </form>
         <p id="messag"></p>
     </div>
 
 <div>
         <p>
-            dont have an account?
+            Are you a shop Owner?
         </p>
           <Link to="/sign">
         Sign up

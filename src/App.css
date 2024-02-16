@@ -1,5 +1,7 @@
 .App {
+    background-color: #000000;
   text-align: center;
+    font-size: 14px; 
 }
 
 .App-logo {
@@ -35,4 +37,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.signup {
+  max-width: 400px; /* Adjust the max-width to your desired size */
+  margin: 50px auto; /* Adjust the margin to move the form up or down */
+}
+
+/* Add any other styling you need for your form elements */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.login{
+  margin-top: 3%;
 }

@@ -1,8 +1,10 @@
 import {React,useState} from "react";
 import "../App.css";
-
+import pic from "../images/CutTrap.png";
+import { Link } from "react-router-dom";
 
 function Auth() {
+
   const handleSignup = async (e) => {
 
     e.preventDefault();
@@ -23,19 +25,23 @@ function Auth() {
   
   return (
     <div>
-       <div style={{display:"flex", justifyContent:"center"}}>
+       <div>
 
       <div>
+        <img src={pic} width="50px"/>
         <p>Sign up</p>
+        <Link to ="/">go Back</Link>
          <form className="signup" id="signup-form" onSubmit={handleSignup}>
-       <label htmlFor="email">Email</label>
-        <input type="email" id="email" name="email" required />
-        <br />
+          <label htmlFor="email">Email</label>
+          <br/>
+        <input className="form-group" type="email" id="email" name="email" required />
 
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password" />
-        <br />
-        <button type="submit">Sign Up</button>
+
+          <label htmlFor="password">Password</label>
+        <input className="form-group" type="password" id="password" name="password" />
+        <br/>
+     
+        <button className="btn btn-warning" type="submit" style={{marginTop:"30px"}}>Sign Up</button>
       </form>
       <p id="message"></p>
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { loadStripe } from '@stripe/stripe-js';
 import "../App.css";
-
+import pic from "../images/CutTrap.png"
 
 const stripePromise = loadStripe("pk_test_51Oia2ME02fj2AjRf2JEN09ww7eJklTtuJFaZLQUXBRcLgCC8TRwy36OQg54s4BwYpxeYSAvLJv4daoX3vMIuzcrN00d4dfDJHm"); // Replace with your actual publishable key
 
@@ -151,26 +151,29 @@ const handlePayment = async () => {
 };
 
   return (
-    <div>
+    <div style={{ width: "80%", margin: "0 auto" }}>
       <div className="row justify-content-center" >
-        <div style={{display:"flex", justifyItems:"space-between",marginTop:"2%"}}>
+        <div style={{display:"flex", justifyItems:"space-between",marginTop:"2%",fontSize:"20px"}}>
 
-<div style={{width:"50%", justifyItems:"space-between"}}>
+
+
+<table>
+  <tr>
+    <td>
+      <div style={{width:"50%", justifyItems:"space-between"}}>
   <h1>
     What is the CutTrap
   </h1>
   <p>
-  Welcome to CutTrap – your go-to for booth bookings and managing hair-cutting schedules.
-   Shop owners can sign up to track daily bookings and easily manage their appointments.
-    Enjoy the convenience of paying with Stripe. 
-     Join CutTrap now!
+ The Cuttrap allows you to book and pay for booth rental time. 
+ Store owners can make an account to track or remove daily bookings through Cuttrap.
   </p>
+  <img src={pic} style={{width:"400px"}}/>
   
 </div>
-         
-
-
-          <div>
+    </td>
+    <td>
+       <div>
              <h1>
             Book your booth space
           </h1>
@@ -211,7 +214,7 @@ const handlePayment = async () => {
               </>
             ) : (
               <>
-                <button type="button" className="btn btn-success" onClick={handleConfirm}>
+                <button type="button" className="btn btn-warning" onClick={handleConfirm}>
                   Confirm
                 </button>
 
@@ -223,6 +226,12 @@ const handlePayment = async () => {
          
             <h2>${tot} is your total</h2>
           </div>
+    </td>
+  </tr>
+</table>
+
+
+         
         </div>
       </div>
     </div>
