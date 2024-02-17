@@ -4,7 +4,7 @@ import pic from "../images/CutTrap.png";
 import { Link } from "react-router-dom";
 
 function Auth() {
-  const history = useHistory();
+
   const handleSignup = async (e) => {
 
     e.preventDefault();
