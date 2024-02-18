@@ -38,6 +38,7 @@ function Auth() {
 
 
           <label htmlFor="password">Password</label>
+    <br/>
         <input className="form-group" type="password" id="password" name="password" />
         <br/>
      
